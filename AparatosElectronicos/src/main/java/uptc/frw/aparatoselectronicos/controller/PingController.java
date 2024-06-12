@@ -10,6 +10,6 @@ public class PingController {
     @GetMapping
     public String getRespose(){
 
-        return "hola mundo";
+        return "hola mundo cruel";
     }
 }
