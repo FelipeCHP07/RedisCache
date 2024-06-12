@@ -15,12 +15,14 @@ public class Component {
     private  String name;
     @Column(name = "ESPECIFICACIONES_COMPONENTE")
     private String specifications;
-    @Column(name = "ID_FABRICANTE")
+    @Column(name = "ID_FABRICANTE", insertable = false, updatable = false)
     private long idManufacturer;
     @OneToMany(mappedBy = "component")
     private List<ApplianceComponent>applianceComponentList;
 
-
+    @ManyToOne
+    @JoinColumn(name = "ID_FABRICANTE", nullable = false)
+    private Manufacturer manufacturer;
 
     public Component() {
     }
@@ -63,6 +65,14 @@ public class Component {
 
     public void setApplianceComponentList(List<ApplianceComponent> applianceComponentList) {
         this.applianceComponentList = applianceComponentList;
+    }
+
+    public Manufacturer getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
     @Override

@@ -18,12 +18,16 @@ public class Repair {
     private Date dateRepair;
     @Column(name = "ID_CLIENTE")
     private long idCustomer;
-    @Column(name = "ID_APARATOELECTRONICO")
+    @Column(name = "ID_APARATOELECTRONICO", insertable = false, updatable = false)
     private long idApplianceElectronic;
     @OneToMany(mappedBy = "repair")
     private List<RepairComponent> repairComponentList;
     @OneToMany(mappedBy = "repair")
     private List<Customer> customerList;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_APARATOELECTRONICO", nullable = false)
+    private ApplianceElectronic applianceElectronic;
 
     public Repair() {
     }
@@ -82,6 +86,14 @@ public class Repair {
 
     public void setCustomerList(List<Customer> customerList) {
         this.customerList = customerList;
+    }
+
+    public ApplianceElectronic getApplianceElectronic() {
+        return applianceElectronic;
+    }
+
+    public void setApplianceElectronic(ApplianceElectronic applianceElectronic) {
+        this.applianceElectronic = applianceElectronic;
     }
 
     @Override

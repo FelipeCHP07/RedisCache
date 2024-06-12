@@ -15,11 +15,15 @@ public class ApplianceComponent {
     private double price;
     @Column(name = "ID_COMPONENTE", insertable = false,updatable = false)
     private long idComponent;
-    @Column(name = "ID_APARATOELECTRONICO")
+    @Column(name = "ID_APARATOELECTRONICO", insertable = false,updatable = false)
     private long idApplianceElectronic;
     @ManyToOne
     @JoinColumn(name = "ID_COMPONENTE")
     private Component component;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_APARATOELECTRONICO", nullable = false)
+    private ApplianceElectronic applianceElectronic;
 
     public ApplianceComponent() {
     }
@@ -70,6 +74,14 @@ public class ApplianceComponent {
 
     public void setComponent(Component component) {
         this.component = component;
+    }
+
+    public ApplianceElectronic getApplianceElectronic() {
+        return applianceElectronic;
+    }
+
+    public void setApplianceElectronic(ApplianceElectronic applianceElectronic) {
+        this.applianceElectronic = applianceElectronic;
     }
 
     @Override
