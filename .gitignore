@@ -1,0 +1,2 @@
+# Exclude the file with properties of database connection
+/AparatosElectronicos/src/main/resources/application.properties
