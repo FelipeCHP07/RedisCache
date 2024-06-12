@@ -8,7 +8,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_CLIENTE")
+    @Column(name = "ID_CLIENTE", insertable = false,updatable = false)
     private Long id;
 
     @Column(name = "NOMBRE_CLIENTE")
@@ -28,6 +28,11 @@ public class Customer {
 
     @Column(name = "CORREO_ELECTRONICO")
     private String email;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_CLIENTE")
+    private Repair repair;
+
 
     public Customer() {
     }
@@ -86,6 +91,14 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Repair getRepair() {
+        return repair;
+    }
+
+    public void setRepair(Repair repair) {
+        this.repair = repair;
     }
 
     @Override

@@ -3,12 +3,13 @@ package uptc.frw.aparatoselectronicos.jpa.entity;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "REPARACION")
 public class Repair {
     @Id
-    @Column(name = "ID_REPARACION")
+    @Column(name = "ID_REPARACION", insertable = false,updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "DESCRIPCION")
@@ -19,6 +20,10 @@ public class Repair {
     private long idCustomer;
     @Column(name = "ID_APARATOELECTRONICO")
     private long idApplianceElectronic;
+    @OneToMany(mappedBy = "repair")
+    private List<RepairComponent> repairComponentList;
+    @OneToMany(mappedBy = "repair")
+    private List<Customer> customerList;
 
     public Repair() {
     }
@@ -61,6 +66,22 @@ public class Repair {
 
     public void setIdApplianceElectronic(long idApplianceElectronic) {
         this.idApplianceElectronic = idApplianceElectronic;
+    }
+
+    public List<RepairComponent> getRepairComponentList() {
+        return repairComponentList;
+    }
+
+    public void setRepairComponentList(List<RepairComponent> repairComponentList) {
+        this.repairComponentList = repairComponentList;
+    }
+
+    public List<Customer> getCustomerList() {
+        return customerList;
+    }
+
+    public void setCustomerList(List<Customer> customerList) {
+        this.customerList = customerList;
     }
 
     @Override
