@@ -1,4 +1,7 @@
 package uptc.frw.aparatoselectronicos.jpa.repository;
 
-public interface ComponentRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import uptc.frw.aparatoselectronicos.jpa.entity.Component;
+
+public interface ComponentRepository extends JpaRepository<Component, Long> {
 }

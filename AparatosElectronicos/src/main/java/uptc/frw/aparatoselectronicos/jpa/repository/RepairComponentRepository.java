@@ -1,4 +1,7 @@
 package uptc.frw.aparatoselectronicos.jpa.repository;
 
-public interface RepairComponentRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import uptc.frw.aparatoselectronicos.jpa.entity.RepairComponent;
+
+public interface RepairComponentRepository extends JpaRepository<RepairComponent, Integer> {
 }

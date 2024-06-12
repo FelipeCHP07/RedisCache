@@ -1,4 +1,6 @@
 package uptc.frw.aparatoselectronicos.jpa.repository;
 
-public interface HouseholdApplianceType {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface HouseholdApplianceType extends JpaRepository <HouseholdApplianceType, Long> {
 }

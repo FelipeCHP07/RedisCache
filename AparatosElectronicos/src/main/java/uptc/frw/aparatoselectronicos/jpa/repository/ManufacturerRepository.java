@@ -1,4 +1,7 @@
 package uptc.frw.aparatoselectronicos.jpa.repository;
 
-public interface ManufacturerRepository {
+import org.springframework.data.repository.CrudRepository;
+import uptc.frw.aparatoselectronicos.jpa.entity.Manufacturer;
+
+public interface ManufacturerRepository extends CrudRepository<Manufacturer, Long> {
 }
