@@ -10,11 +10,11 @@ public class Component {
     @Id
     @Column(name = "ID_COMPONENTE")
     private long id;
-    @Column(name = "ID_COMPONENTE")
+    @Column(name = "NOMBRE_COMPONENTE")
     private  String name;
-    @Column(name = "ID_COMPONENTE")
+    @Column(name = "ESPECIFICACIONES_COMPONENTE")
     private String specifications;
-    @Column(name = "ID_COMPONENTE")
+    @Column(name = "ID_FABRICANTE")
     private long idManufacturer;
     @OneToMany(mappedBy = "component")
     private List<ApplianceComponent>applianceComponentList;

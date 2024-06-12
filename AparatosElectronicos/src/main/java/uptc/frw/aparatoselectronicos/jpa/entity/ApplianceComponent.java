@@ -6,16 +6,16 @@ import jakarta.persistence.*;
 @Table(name = "APARATOCOMPONENTE")
 public class ApplianceComponent {
     @Id
-    @Column(name = "ID_COMPONENTE")
+    @Column(name = "ID_APARATOCOMPONENTE")
     private long id;
-    @Column(name = "ID_COMPONENTE")
+    @Column(name = "CANTIDAD")
     private long quantity;
-    @Column(name = "ID_COMPONENTE")
+    @Column(name = "PRECIO")
     private double price;
-    @Column(name = "ID_COMPONENTE")
+    @Column(name = "ID_COMPONENTE", insertable = false,updatable = false)
     private long idComponent;
-    @Column(name = "ID_COMPONENTE")
-    private long idManufacturer;
+    @Column(name = "ID_APARATOELECTRONICO")
+    private long idApplianceElectronic;
     @ManyToOne
     @JoinColumn(name = "ID_COMPONENTE", nullable = false)
     private Component component;
@@ -55,12 +55,12 @@ public class ApplianceComponent {
         this.idComponent = idComponent;
     }
 
-    public long getIdManufacturer() {
-        return idManufacturer;
+    public long getIdApplianceElectronic() {
+        return idApplianceElectronic;
     }
 
-    public void setIdManufacturer(long idManufacturer) {
-        this.idManufacturer = idManufacturer;
+    public void setIdApplianceElectronic(long idApplianceElectronic) {
+        this.idApplianceElectronic = idApplianceElectronic;
     }
 
     public Component getComponent() {
@@ -78,7 +78,7 @@ public class ApplianceComponent {
                 ", quantity=" + quantity +
                 ", price=" + price +
                 ", idComponent=" + idComponent +
-                ", idManufacturer=" + idManufacturer +
+                ", idManufacturer=" + idApplianceElectronic +
                 '}';
     }
 }

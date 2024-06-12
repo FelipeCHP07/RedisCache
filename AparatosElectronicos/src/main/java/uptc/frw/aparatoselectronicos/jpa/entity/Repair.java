@@ -13,14 +13,14 @@ public class Repair {
     @Id
     @Column(name = "ID_REPARACION")
     private long id;
-    @Column(name = "ID_REPARACION")
+    @Column(name = "DESCRIPCION")
     private String description;
-    @Column(name = "ID_REPARACION")
+    @Column(name = "FECHA_REPARACION")
     private Date dateRepair;
-    @Column(name = "ID_REPARACION")
+    @Column(name = "ID_CLIENTE")
     private long idCustomer;
-    @Column(name = "ID_REPARACION")
-    private long idAppliance;
+    @Column(name = "ID_APARATOELECTRONICO")
+    private long idApplianceElectronic;
 
     public Repair() {
     }
@@ -57,12 +57,12 @@ public class Repair {
         this.idCustomer = idCustomer;
     }
 
-    public long getIdAppliance() {
-        return idAppliance;
+    public long getIdApplianceElectronic() {
+        return idApplianceElectronic;
     }
 
-    public void setIdAppliance(long idAppliance) {
-        this.idAppliance = idAppliance;
+    public void setIdApplianceElectronic(long idApplianceElectronic) {
+        this.idApplianceElectronic = idApplianceElectronic;
     }
 
     @Override
@@ -72,7 +72,7 @@ public class Repair {
                 ", description='" + description + '\'' +
                 ", dateRepair=" + dateRepair +
                 ", idCustomer=" + idCustomer +
-                ", idAppliance=" + idAppliance +
+                ", idAppliance=" + idApplianceElectronic +
                 '}';
     }
 }

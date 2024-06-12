@@ -1,4 +1,4 @@
 package uptc.frw.aparatoselectronicos.jpa.entity;
 
-public class ElectronicDevice {
+public class ApplianceElectronic {
 }
