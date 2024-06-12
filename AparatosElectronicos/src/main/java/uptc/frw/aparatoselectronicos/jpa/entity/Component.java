@@ -9,6 +9,7 @@ import java.util.List;
 public class Component {
     @Id
     @Column(name = "ID_COMPONENTE")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "NOMBRE_COMPONENTE")
     private  String name;

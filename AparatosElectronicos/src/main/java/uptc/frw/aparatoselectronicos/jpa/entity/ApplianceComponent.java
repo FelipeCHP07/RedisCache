@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 public class ApplianceComponent {
     @Id
     @Column(name = "ID_APARATOCOMPONENTE")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "CANTIDAD")
     private long quantity;
