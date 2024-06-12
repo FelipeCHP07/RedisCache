@@ -18,7 +18,7 @@ public class ApplianceComponent {
     @Column(name = "ID_APARATOELECTRONICO")
     private long idApplianceElectronic;
     @ManyToOne
-    @JoinColumn(name = "ID_COMPONENTE", nullable = false)
+    @JoinColumn(name = "ID_COMPONENTE")
     private Component component;
 
     public ApplianceComponent() {
