@@ -5,5 +5,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("electronicdevice")
-public class ElectronicDeviceController {
+public class ApplianceElectronicController {
 }

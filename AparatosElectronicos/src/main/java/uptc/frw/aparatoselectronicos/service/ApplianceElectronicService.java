@@ -1,4 +1,4 @@
 package uptc.frw.aparatoselectronicos.service;
 
-public class ElectronicDeviceService {
+public class ApplianceElectronicService {
 }
