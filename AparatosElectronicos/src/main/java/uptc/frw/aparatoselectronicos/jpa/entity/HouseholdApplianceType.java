@@ -76,7 +76,6 @@ public class HouseholdApplianceType {
     public String toString() {
         return "HouseholdApplianceType{" +
             "id=" + id +
-           // ", typeId=" + subTypeId +
             ", typeName='" + typeName + '\'' +
             ", typeDescription='" + typeDescription + '\'' +
             '}';

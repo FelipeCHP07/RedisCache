@@ -28,7 +28,10 @@ public class ManufacturerService {
     return manufacturerRepository.findById(id).orElse(null);
   }
 
-  public Manufacturer updateManufacturer(Manufacturer manufacturer) {
+  public Manufacturer updateManufacturer(Manufacturer newManufacturer) {
+    Manufacturer manufacturer = findManufacturerById(newManufacturer.getId());
+    manufacturer.setDomicilio(newManufacturer.getDomicilio());
+    manufacturer.setRif(newManufacturer.getRif());
     return manufacturerRepository.save(manufacturer);
   }
 
