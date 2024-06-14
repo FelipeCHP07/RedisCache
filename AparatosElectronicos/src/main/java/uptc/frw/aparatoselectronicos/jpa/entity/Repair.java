@@ -26,7 +26,7 @@ public class Repair {
     private List<Customer> customerList;
 
     @ManyToOne
-    @JoinColumn(name = "ID_APARATOELECTRONICO", nullable = false)
+    @JoinColumn(name = "ID_APARATOELECTRONICO")
     private ApplianceElectronic applianceElectronic;
 
     public Repair() {

@@ -1,5 +1,6 @@
 package uptc.frw.aparatoselectronicos.jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class ApplianceElectronic {
     @ManyToOne
     @JoinColumn(name = "ID_TIPOELECTRODOMESTICO", nullable = false)
     private HouseholdApplianceType householdApplianceType;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "applianceElectronic")
     private List<Repair> repairs;
 

@@ -1,5 +1,6 @@
 package uptc.frw.aparatoselectronicos.jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,12 +16,14 @@ public class ApplianceComponent {
     private double price;
     @Column(name = "ID_COMPONENTE", insertable = false,updatable = false)
     private long idComponent;
+    @JsonIgnore
     @Column(name = "ID_APARATOELECTRONICO", insertable = false,updatable = false)
     private long idApplianceElectronic;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_COMPONENTE")
     private Component component;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_APARATOELECTRONICO", nullable = false)
     private ApplianceElectronic applianceElectronic;
