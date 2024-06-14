@@ -1,6 +1,9 @@
 package uptc.frw.aparatoselectronicos.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import uptc.frw.aparatoselectronicos.jpa.entity.RepairComponent;
 import uptc.frw.aparatoselectronicos.jpa.entity.Component;
@@ -8,9 +11,9 @@ import uptc.frw.aparatoselectronicos.jpa.entity.Repair;
 import uptc.frw.aparatoselectronicos.jpa.repository.ComponentRepository;
 import uptc.frw.aparatoselectronicos.jpa.repository.RepairComponentRepository;
 
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class RepairComponentService {
@@ -24,35 +27,33 @@ public class RepairComponentService {
     private ComponentService componentService;
     @Autowired
     private ComponentRepository componentRepository;
-
+    @Cacheable(value = "repairComponentsCache")
     public List<RepairComponent> getAllRepairComponents() {
-        return (List<RepairComponent>) repairComponentRepository.findAll();
+        return repairComponentRepository.findAll();
+    }
+    @Cacheable(value = "repairComponentCache", key = "#id")
+    public RepairComponent getRepairComponentById(long id) {
+        return repairComponentRepository.findById(id).orElse(null);
     }
 
-    public Optional<RepairComponent> getRepairComponentById(Long id) {
-        return repairComponentRepository.findById(id);
-    }
-
+    @CachePut(value = "repairComponentCache", key = "#repairComponent.id")
     public RepairComponent createRepairComponent(RepairComponent repairComponent) {
         return repairComponentRepository.save(repairComponent);
     }
 
-    public RepairComponent updateRepairComponent(Long id, RepairComponent updatedRepairComponent) {
-        Optional<RepairComponent> existingRepairComponent = repairComponentRepository.findById(id);
-        if (existingRepairComponent.isPresent()) {
-            RepairComponent rc = existingRepairComponent.get();
-            rc.setRepair(updatedRepairComponent.getRepair());
-            rc.setComponent(updatedRepairComponent.getComponent());
-            return repairComponentRepository.save(rc);
-        }
-        return null;
+    @CachePut(value = "repairComponentCache", key = "#id")
+    public RepairComponent updateRepairComponent(RepairComponent updatedRepairComponent) {
+       RepairComponent repairComponent = getRepairComponentById(updatedRepairComponent.getId());
+       return repairComponentRepository.save(repairComponent);
     }
 
+    @CacheEvict(value = "repairComponentCache", key = "#id")
     public void deleteRepairComponent(Long id) {
         repairComponentRepository.deleteById(id);
     }
 
-    public RepairComponent createRepairComponent (Long idComp, Long idRepair){
+    @CachePut(value = "repairComponentCache", key = "#result.id")
+    public RepairComponent createRepairComponent (long idComp, long idRepair){
         Repair repair = repairService.getRepairById(idRepair);
         Component component = componentService.getComponentById(idComp);
         RepairComponent repairComponent = new RepairComponent();

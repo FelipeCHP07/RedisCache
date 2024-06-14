@@ -21,9 +21,8 @@ public class CustomerService {
         return (List<Customer>) customerRepository.findAll();
     }
 
-    @Cacheable(value = "customer",key = "'all'")
+    @Cacheable(value = "customerCache", key = "#id")
     public Customer getCustomerById(Long id) {
-
         return customerRepository.findById(id).orElse(null);
     }
     @CachePut(value = "customerCache", key = "#customer.id")
