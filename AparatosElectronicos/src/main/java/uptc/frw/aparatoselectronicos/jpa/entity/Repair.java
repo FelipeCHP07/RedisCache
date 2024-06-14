@@ -21,6 +21,7 @@ public class Repair {
     private long idCustomer;
     @Column(name = "ID_APARATOELECTRONICO", insertable = false, updatable = false)
     private long idApplianceElectronic;
+    @JsonIgnore
     @OneToMany(mappedBy = "repair")
     private List<RepairComponent> repairComponentList;
 
@@ -28,7 +29,7 @@ public class Repair {
     @ManyToOne
     @JoinColumn(name = "ID_CLIENTE")
     private Customer customer;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_APARATOELECTRONICO")
     private ApplianceElectronic applianceElectronic;

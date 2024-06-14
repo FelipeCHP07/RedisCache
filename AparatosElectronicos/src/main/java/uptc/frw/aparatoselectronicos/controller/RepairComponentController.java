@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("repair-components")
+@RequestMapping("repaircomponent")
 public class RepairComponentController {
 
     @Autowired
