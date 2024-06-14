@@ -1,9 +1,27 @@
 package uptc.frw.aparatoselectronicos.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import uptc.frw.aparatoselectronicos.jpa.entity.ApplianceComponent;
+import uptc.frw.aparatoselectronicos.service.ApplianceComponentService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("appliancecomponet")
 public class ApplianceComponentController {
+    @Autowired
+    private ApplianceComponentService applianceComponentService;
+    @GetMapping
+    public List<ApplianceComponent> getApplianceComponent(){
+        return  applianceComponentService.getApplianceComponent();
+    }
+    @GetMapping("/{id}")
+    public ApplianceComponent getApplianceComponentById(@PathVariable long id){
+        return applianceComponentService.getApplianceComponentById(id);
+    }
+    @PostMapping
+    public ApplianceComponent createApplianceComponent(@RequestBody ApplianceComponent applianceComponent){
+        return applianceComponentService.createApplianceComponent(applianceComponent);
+    }
 }

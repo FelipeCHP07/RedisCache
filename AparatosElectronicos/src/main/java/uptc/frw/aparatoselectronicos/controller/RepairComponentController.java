@@ -49,4 +49,9 @@ public class RepairComponentController {
         repairComponentService.deleteRepairComponent(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/component/{component}/repair/{repair}")
+    public RepairComponent addComponentToRepair(@PathVariable Long component, @PathVariable Long repair) {
+        return repairComponentService.createRepairComponent(component,repair);
+    }
 }
