@@ -16,7 +16,6 @@ public class ApplianceComponent {
     private double price;
     @Column(name = "ID_COMPONENTE", insertable = false,updatable = false)
     private long idComponent;
-    @JsonIgnore
     @Column(name = "ID_APARATOELECTRONICO", insertable = false,updatable = false)
     private long idApplianceElectronic;
     @JsonIgnore
@@ -25,7 +24,7 @@ public class ApplianceComponent {
     private Component component;
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "ID_APARATOELECTRONICO", nullable = false)
+    @JoinColumn(name = "ID_APARATOELECTRONICO")
     private ApplianceElectronic applianceElectronic;
 
     public ApplianceComponent() {

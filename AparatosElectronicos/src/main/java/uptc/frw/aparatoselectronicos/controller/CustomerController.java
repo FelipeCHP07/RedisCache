@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("customer")
 public class CustomerController {
 
     @Autowired
@@ -21,7 +21,7 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Customer> getCustomerById(@PathVariable Long id) {
+    public Customer getCustomerById(@PathVariable Long id) {
         return customerService.getCustomerById(id);
     }
 
@@ -30,9 +30,9 @@ public class CustomerController {
         return customerService.createCustomer(customer);
     }
 
-    @PutMapping("/{id}")
-    public Customer updateCustomer(@PathVariable Long id, @RequestBody Customer updatedCustomer) {
-        return customerService.updateCustomer(id, updatedCustomer);
+    @PutMapping
+    public Customer updateCustomer( @RequestBody Customer updatedCustomer) {
+        return customerService.updateCustomer(updatedCustomer);
     }
 
     @DeleteMapping("/{id}")

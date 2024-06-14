@@ -18,12 +18,12 @@ public class ApplianceElectronic {
 
     @Column(name="DESCRIPCION_APARATOELECTRONICO")
     private String description;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "applianceElectronic")
-    private List<ApplianceComponent> applianceComponents;
-
+    private List<ApplianceComponent> applianceComponentList;
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "ID_TIPOELECTRODOMESTICO", nullable = false)
+    @JoinColumn(name = "ID_TIPOELECTRODOMESTICO")
     private HouseholdApplianceType householdApplianceType;
     @JsonIgnore
     @OneToMany(mappedBy = "applianceElectronic")
@@ -56,12 +56,12 @@ public class ApplianceElectronic {
         this.description = description;
     }
 
-    public List<ApplianceComponent> getApplianceComponents() {
-        return applianceComponents;
+    public List<ApplianceComponent> getApplianceComponentList() {
+        return applianceComponentList;
     }
 
-    public void setApplianceComponents(List<ApplianceComponent> applianceComponents) {
-        this.applianceComponents = applianceComponents;
+    public void setApplianceComponentList(List<ApplianceComponent> applianceComponentList) {
+        this.applianceComponentList = applianceComponentList;
     }
 
     public List<Repair> getRepairs() {

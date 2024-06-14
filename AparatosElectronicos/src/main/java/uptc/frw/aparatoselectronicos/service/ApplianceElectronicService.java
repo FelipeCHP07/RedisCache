@@ -3,6 +3,7 @@ package uptc.frw.aparatoselectronicos.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uptc.frw.aparatoselectronicos.jpa.entity.ApplianceElectronic;
+import uptc.frw.aparatoselectronicos.jpa.entity.HouseholdApplianceType;
 import uptc.frw.aparatoselectronicos.jpa.repository.ApplianceElectronicRepository;
 
 import java.util.List;
@@ -11,8 +12,12 @@ import java.util.List;
 public class ApplianceElectronicService {
   @Autowired
   private ApplianceElectronicRepository applianceElectronicRepository;
+  @Autowired
+  private HouseholdApplianceTypeService householdApplianceTypeService;
 
   public ApplianceElectronic createApplianceElectronic(ApplianceElectronic applianceElectronic) {
+    HouseholdApplianceType householdApplianceType = householdApplianceTypeService.findHouseholdApplianeTypeById(applianceElectronic.getIdHouseholdApplianceType());
+    applianceElectronic.setHouseholdApplianceType(householdApplianceType);
     return applianceElectronicRepository.save(applianceElectronic);
   }
 

@@ -18,28 +18,26 @@ public class CustomerService {
         return (List<Customer>) customerRepository.findAll();
     }
 
-    public Optional<Customer> getCustomerById(Long id) {
-        return customerRepository.findById(id);
+    public Customer getCustomerById(Long id) {
+
+        return customerRepository.findById(id).orElse(null);
     }
 
     public Customer createCustomer(Customer customer) {
         return customerRepository.save(customer);
     }
 
-    public Customer updateCustomer(Long id, Customer updatedCustomer) {
-        Optional<Customer> existingCustomerOpt = customerRepository.findById(id);
-        if (existingCustomerOpt.isPresent()) {
-            Customer existingCustomer = existingCustomerOpt.get();
-            existingCustomer.setFirstName(updatedCustomer.getFirstName());
-            existingCustomer.setLastName(updatedCustomer.getLastName());
-            existingCustomer.setDocumentNumber(updatedCustomer.getDocumentNumber());
-            existingCustomer.setAddress(updatedCustomer.getAddress());
-            existingCustomer.setPhone(updatedCustomer.getPhone());
-            existingCustomer.setEmail(updatedCustomer.getEmail());
-            return customerRepository.save(existingCustomer);
-        } else {
-            return null;
-        }
+    public Customer updateCustomer( Customer updatedCustomer) {
+        Customer customer = getCustomerById(updatedCustomer.getId());
+
+        customer.setFirstName(updatedCustomer.getFirstName());
+        customer.setLastName(updatedCustomer.getLastName());
+        customer.setDocumentNumber(updatedCustomer.getDocumentNumber());
+        customer.setAddress(updatedCustomer.getAddress());
+        customer.setPhone(updatedCustomer.getPhone());
+        customer.setEmail(updatedCustomer.getEmail());
+        return customerRepository.save(customer);
+
     }
 
     public void deleteCustomer(Long id) {

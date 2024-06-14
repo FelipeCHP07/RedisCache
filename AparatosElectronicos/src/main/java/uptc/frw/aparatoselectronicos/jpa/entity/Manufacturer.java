@@ -1,5 +1,6 @@
 package uptc.frw.aparatoselectronicos.jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class Manufacturer {
 
     @Column(name = "DOMICILIO")
     private String domicilio;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "manufacturer")
     private List<Component> components;
 

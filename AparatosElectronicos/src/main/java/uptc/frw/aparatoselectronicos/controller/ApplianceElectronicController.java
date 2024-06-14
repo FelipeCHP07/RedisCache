@@ -8,7 +8,7 @@ import uptc.frw.aparatoselectronicos.service.ApplianceElectronicService;
 import java.util.List;
 
 @RestController
-@RequestMapping("electronicdevice")
+@RequestMapping("applianceelectronic")
 public class ApplianceElectronicController {
   @Autowired
   private ApplianceElectronicService applianceElectronicService;
