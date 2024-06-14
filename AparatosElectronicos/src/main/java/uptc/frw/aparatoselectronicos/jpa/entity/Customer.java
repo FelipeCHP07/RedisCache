@@ -2,6 +2,8 @@ package uptc.frw.aparatoselectronicos.jpa.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 
 import java.util.List;
 import java.util.Set;
@@ -13,8 +15,9 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CLIENTE", insertable = false,updatable = false)
-    private Long id;
 
+    private Long id;
+    @Indexed
     @Column(name = "NOMBRE_CLIENTE")
     private String firstName;
 

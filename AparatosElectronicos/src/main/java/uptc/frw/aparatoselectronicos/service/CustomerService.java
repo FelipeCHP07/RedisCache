@@ -1,6 +1,9 @@
 package uptc.frw.aparatoselectronicos.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import uptc.frw.aparatoselectronicos.jpa.entity.Customer;
 import uptc.frw.aparatoselectronicos.jpa.repository.CustomerRepository;
@@ -13,20 +16,22 @@ public class CustomerService {
 
     @Autowired
     private CustomerRepository customerRepository;
-
+    @Cacheable(value = "customersCache")
     public List<Customer> getAllCustomers() {
         return (List<Customer>) customerRepository.findAll();
     }
 
+    @Cacheable(value = "customer",key = "'all'")
     public Customer getCustomerById(Long id) {
 
         return customerRepository.findById(id).orElse(null);
     }
-
+    @CachePut(value = "customerCache", key = "#customer.id")
     public Customer createCustomer(Customer customer) {
         return customerRepository.save(customer);
     }
 
+    @CachePut(value = "customerCache", key = "#updatedCustomer.id")
     public Customer updateCustomer( Customer updatedCustomer) {
         Customer customer = getCustomerById(updatedCustomer.getId());
 
@@ -39,7 +44,7 @@ public class CustomerService {
         return customerRepository.save(customer);
 
     }
-
+    @CacheEvict(value = "customerCache", key = "#id")
     public void deleteCustomer(Long id) {
         customerRepository.deleteById(id);
     }

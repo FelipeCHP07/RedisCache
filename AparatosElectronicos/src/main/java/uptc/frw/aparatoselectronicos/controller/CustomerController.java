@@ -1,6 +1,8 @@
 package uptc.frw.aparatoselectronicos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+
 import org.springframework.web.bind.annotation.*;
 import uptc.frw.aparatoselectronicos.jpa.entity.Customer;
 import uptc.frw.aparatoselectronicos.service.CustomerService;
