@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import uptc.frw.aparatoselectronicos.jpa.entity.RepairComponent;
 import uptc.frw.aparatoselectronicos.jpa.entity.Component;
 import uptc.frw.aparatoselectronicos.jpa.entity.Repair;
+import uptc.frw.aparatoselectronicos.jpa.repository.ComponentRepository;
 import uptc.frw.aparatoselectronicos.jpa.repository.RepairComponentRepository;
 
 import java.util.ArrayList;
@@ -16,6 +17,13 @@ public class RepairComponentService {
 
     @Autowired
     private RepairComponentRepository repairComponentRepository;
+    @Autowired
+    private RepairService repairService;
+
+    @Autowired
+    private ComponentService componentService;
+    @Autowired
+    private ComponentRepository componentRepository;
 
     public List<RepairComponent> getAllRepairComponents() {
         return (List<RepairComponent>) repairComponentRepository.findAll();
@@ -43,5 +51,16 @@ public class RepairComponentService {
     public void deleteRepairComponent(Long id) {
         repairComponentRepository.deleteById(id);
     }
+
+    public RepairComponent createRepairComponent (Long idComp, Long idRepair){
+        Repair repair = repairService.getRepairById(idRepair);
+        Component component = componentService.getComponentById(idComp);
+        RepairComponent repairComponent = new RepairComponent();
+        repairComponent.setComponent(component);
+        repairComponent.setRepair(repair);
+        return repairComponentRepository.save(repairComponent);
+    }
+
+
 
 }
