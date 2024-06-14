@@ -24,4 +24,14 @@ public class ApplianceComponentController {
     public ApplianceComponent createApplianceComponent(@RequestBody ApplianceComponent applianceComponent){
         return applianceComponentService.createApplianceComponent(applianceComponent);
     }
-}
+    @PutMapping
+    public ApplianceComponent updateApplianceComponent(@RequestBody ApplianceComponent newApplianceComponent){
+        return applianceComponentService.updateApplianceComponent(newApplianceComponent);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteApplianceComponent(@PathVariable long id){
+        applianceComponentService.deleteApplianceComponent(id);
+
+    }
+
+    }
