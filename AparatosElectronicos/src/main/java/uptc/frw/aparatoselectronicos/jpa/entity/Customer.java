@@ -2,6 +2,8 @@ package uptc.frw.aparatoselectronicos.jpa.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "CLIENTE")
 public class Customer {
@@ -29,12 +31,20 @@ public class Customer {
     @Column(name = "CORREO_ELECTRONICO")
     private String email;
 
-    @ManyToOne
-    @JoinColumn(name = "ID_CLIENTE")
-    private Repair repair;
+    @OneToMany(mappedBy = "customer")
+    private Set<Repair> repairs;
 
 
     public Customer() {
+    }
+
+    public Customer(String firstName, String lastName, String documentNumber, String address, String phone, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.documentNumber = documentNumber;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
     }
 
     public Long getId() {
@@ -93,12 +103,12 @@ public class Customer {
         this.email = email;
     }
 
-    public Repair getRepair() {
-        return repair;
+    public Set<Repair> getRepairs() {
+        return repairs;
     }
 
-    public void setRepair(Repair repair) {
-        this.repair = repair;
+    public void setRepairs(Set<Repair> repairs) {
+        this.repairs = repairs;
     }
 
     @Override
