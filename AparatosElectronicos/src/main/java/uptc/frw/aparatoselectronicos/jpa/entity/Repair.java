@@ -1,5 +1,6 @@
 package uptc.frw.aparatoselectronicos.jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -16,14 +17,17 @@ public class Repair {
     private String description;
     @Column(name = "FECHA_REPARACION")
     private Date dateRepair;
-    @Column(name = "ID_CLIENTE")
+    @Column(name = "ID_CLIENTE", insertable = false, updatable = false)
     private long idCustomer;
     @Column(name = "ID_APARATOELECTRONICO", insertable = false, updatable = false)
     private long idApplianceElectronic;
     @OneToMany(mappedBy = "repair")
     private List<RepairComponent> repairComponentList;
-    @OneToMany(mappedBy = "repair")
-    private List<Customer> customerList;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "ID_CLIENTE")
+    private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "ID_APARATOELECTRONICO")
@@ -80,12 +84,12 @@ public class Repair {
         this.repairComponentList = repairComponentList;
     }
 
-    public List<Customer> getCustomerList() {
-        return customerList;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerList(List<Customer> customerList) {
-        this.customerList = customerList;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public ApplianceElectronic getApplianceElectronic() {

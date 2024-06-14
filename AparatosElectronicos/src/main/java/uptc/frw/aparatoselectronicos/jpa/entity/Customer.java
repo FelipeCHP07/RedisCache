@@ -1,7 +1,9 @@
 package uptc.frw.aparatoselectronicos.jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -30,9 +32,9 @@ public class Customer {
 
     @Column(name = "CORREO_ELECTRONICO")
     private String email;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "customer")
-    private Set<Repair> repairs;
+    private List<Repair> repairList;
 
 
     public Customer() {
@@ -103,12 +105,12 @@ public class Customer {
         this.email = email;
     }
 
-    public Set<Repair> getRepairs() {
-        return repairs;
+    public List<Repair> getRepairList() {
+        return repairList;
     }
 
-    public void setRepairs(Set<Repair> repairs) {
-        this.repairs = repairs;
+    public void setRepairList(List<Repair> repairList) {
+        this.repairList = repairList;
     }
 
     @Override
