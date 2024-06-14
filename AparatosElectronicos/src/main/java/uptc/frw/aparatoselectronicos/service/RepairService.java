@@ -27,6 +27,15 @@ public class RepairService {
         repair.setApplianceElectronic(applianceElectronic);
         return repairRepository.save(repair);
     }
+    public Repair updateRepair(Repair newRepair){
+        Repair repair = getRepairById(newRepair.getId());
+        repair.setDescription(newRepair.getDescription());
+        repair.setDateRepair(newRepair.getDateRepair());
+        return repairRepository.save(repair);
+    }
+    public void deleteRepair(long id){
+        repairRepository.deleteById(id);
+    }
 
 
 }
