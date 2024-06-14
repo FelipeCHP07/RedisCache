@@ -71,6 +71,14 @@ public class ApplianceElectronic {
         this.repairs = repairs;
     }
 
+    public HouseholdApplianceType getHouseholdApplianceType() {
+        return householdApplianceType;
+    }
+
+    public void setHouseholdApplianceType(HouseholdApplianceType householdApplianceType) {
+        this.householdApplianceType = householdApplianceType;
+    }
+
     @Override
     public String toString() {
         return "ApplianceElectronic{" +

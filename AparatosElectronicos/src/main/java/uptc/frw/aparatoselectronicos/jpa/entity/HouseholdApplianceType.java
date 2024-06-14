@@ -1,5 +1,6 @@
 package uptc.frw.aparatoselectronicos.jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -12,19 +13,20 @@ public class HouseholdApplianceType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "ID_SUBTIPOELECTRODOMESTICO")
-    private long subTypeId;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "ID_TIPOELECTRODOMESTICOGENERAL", referencedColumnName = "ID_TIPOELECTRODOMESTICO")
+    private HouseholdApplianceType typeHouseholdApplianceType;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "typeHouseholdApplianceType")
+    private List<HouseholdApplianceType> subtypeHouseholdApplianceTypes;
 
     @Column(name = "NOMBRE_TIPOELECTRODOMESTICO")
     private String typeName;
 
     @Column(name = "CARACTERISTICAS_TIPOELECTRODOMESTICO")
     private String typeDescription;
-
-
-
-    @OneToMany(mappedBy = "householdApplianceType")
-    private List<ApplianceElectronic> applianceElectronics;
 
     public HouseholdApplianceType() {
     }
@@ -37,13 +39,6 @@ public class HouseholdApplianceType {
         this.id = id;
     }
 
-    public long getSubTypeId() {
-        return subTypeId;
-    }
-
-    public void setSubTypeId(long typeId) {
-        this.subTypeId = typeId;
-    }
 
     public String getTypeName() {
         return typeName;
@@ -61,21 +56,27 @@ public class HouseholdApplianceType {
         this.typeDescription = typeDescription;
     }
 
-    public List<ApplianceElectronic> getApplianceElectronics() {
-        return applianceElectronics;
+    public HouseholdApplianceType getTypeHouseholdApplianceType() {
+        return typeHouseholdApplianceType;
     }
 
-    public void setApplianceElectronics(List<ApplianceElectronic> applianceElectronics) {
-        this.applianceElectronics = applianceElectronics;
+    public void setTypeHouseholdApplianceType(HouseholdApplianceType typeHouseholdApplianceType) {
+        this.typeHouseholdApplianceType = typeHouseholdApplianceType;
     }
 
+    public List<HouseholdApplianceType> getSubtypeHouseholdApplianceTypes() {
+        return subtypeHouseholdApplianceTypes;
+    }
 
+    public void setSubtypeHouseholdApplianceTypes(List<HouseholdApplianceType> subtypeHouseholdApplianceTypes) {
+        this.subtypeHouseholdApplianceTypes = subtypeHouseholdApplianceTypes;
+    }
 
     @Override
     public String toString() {
         return "HouseholdApplianceType{" +
             "id=" + id +
-            ", typeId=" + subTypeId +
+           // ", typeId=" + subTypeId +
             ", typeName='" + typeName + '\'' +
             ", typeDescription='" + typeDescription + '\'' +
             '}';
