@@ -24,9 +24,8 @@ public class RepairComponentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RepairComponent> getRepairComponentById(@PathVariable Long id) {
-        Optional<RepairComponent> repairComponent = repairComponentService.getRepairComponentById(id);
-        return repairComponent.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public RepairComponent getRepairComponentById(@PathVariable long id) {
+        return repairComponentService.getRepairComponentById(id);
     }
 
     @PostMapping
@@ -35,9 +34,9 @@ public class RepairComponentController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdRepairComponent);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<RepairComponent> updateRepairComponent(@PathVariable Long id, @RequestBody RepairComponent updatedRepairComponent) {
-        RepairComponent updatedComponent = repairComponentService.updateRepairComponent(id, updatedRepairComponent);
+    @PutMapping
+    public ResponseEntity<RepairComponent> updateRepairComponent( @RequestBody RepairComponent updatedRepairComponent) {
+        RepairComponent updatedComponent = repairComponentService.updateRepairComponent( updatedRepairComponent);
         if (updatedComponent != null) {
             return ResponseEntity.ok(updatedComponent);
         }
@@ -45,13 +44,13 @@ public class RepairComponentController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRepairComponent(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteRepairComponent(@PathVariable long id) {
         repairComponentService.deleteRepairComponent(id);
         return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/component/{component}/repair/{repair}")
-    public RepairComponent addComponentToRepair(@PathVariable Long component, @PathVariable Long repair) {
+    public RepairComponent addComponentToRepair(@PathVariable long component, @PathVariable long repair) {
         return repairComponentService.createRepairComponent(component,repair);
     }
 }

@@ -18,14 +18,14 @@ public class CustomerService {
     private CustomerRepository customerRepository;
     @Cacheable(value = "customersCache")
     public List<Customer> getAllCustomers() {
-        return (List<Customer>) customerRepository.findAll();
+        return customerRepository.findAll();
     }
 
-    @Cacheable(value = "customer",key = "'all'")
-    public Customer getCustomerById(Long id) {
-
+    @Cacheable(value = "customerCache", key = "#id")
+    public Customer getCustomerById(long id) {
         return customerRepository.findById(id).orElse(null);
     }
+
     @CachePut(value = "customerCache", key = "#customer.id")
     public Customer createCustomer(Customer customer) {
         return customerRepository.save(customer);
@@ -42,10 +42,10 @@ public class CustomerService {
         customer.setPhone(updatedCustomer.getPhone());
         customer.setEmail(updatedCustomer.getEmail());
         return customerRepository.save(customer);
-
     }
+
     @CacheEvict(value = "customerCache", key = "#id")
-    public void deleteCustomer(Long id) {
+    public void deleteCustomer(long id) {
         customerRepository.deleteById(id);
     }
 

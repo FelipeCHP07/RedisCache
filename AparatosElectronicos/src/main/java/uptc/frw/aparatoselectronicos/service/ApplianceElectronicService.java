@@ -33,9 +33,7 @@ public class ApplianceElectronicService {
     return applianceElectronicRepository.findById(id).orElse(null);
   }
 
-  public ApplianceElectronic updateApplianceElectronic(ApplianceElectronic newApplianceElectronic) {
-    ApplianceElectronic applianceElectronic = findApplianceElectronicById(newApplianceElectronic.getId());
-    applianceElectronic.setDescription(newApplianceElectronic.getDescription());
+  public ApplianceElectronic updateApplianceElectronic(ApplianceElectronic applianceElectronic) {
     return applianceElectronicRepository.save(applianceElectronic);
   }
 

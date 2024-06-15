@@ -29,10 +29,7 @@ public class HouseholdApplianceTypeService {
     return householdApplianceTypeRepository.findById(id).orElse(null);
   }
 
-  public HouseholdApplianceType updateHouseholdApplianceType(HouseholdApplianceType newHouseholdApplianceType) {
-    HouseholdApplianceType householdApplianceType = findHouseholdApplianeTypeById(newHouseholdApplianceType.getId());
-    householdApplianceType.setTypeName(newHouseholdApplianceType.getTypeName());
-    householdApplianceType.setTypeDescription(newHouseholdApplianceType.getTypeDescription());
+  public HouseholdApplianceType updateHouseholdApplianceType(HouseholdApplianceType householdApplianceType) {
     return householdApplianceTypeRepository.save(householdApplianceType);
   }
 
