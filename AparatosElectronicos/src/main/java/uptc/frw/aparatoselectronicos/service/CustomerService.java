@@ -21,7 +21,6 @@ public class CustomerService {
     private CustomerRepository customerRepository;
     @Cacheable(value = "customersCache")
     public List<Customer> getAllCustomers() {
-
         return customerRepository.findAll();
     }
 
@@ -29,6 +28,7 @@ public class CustomerService {
     public Customer getCustomerById(long id) {
         return customerRepository.findById(id).orElse(null);
     }
+
     @CachePut(value = "customerCache", key = "#customer.id")
     public Customer createCustomer(Customer customer) {
         return customerRepository.save(customer);
