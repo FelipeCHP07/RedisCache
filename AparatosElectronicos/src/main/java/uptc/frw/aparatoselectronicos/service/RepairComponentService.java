@@ -22,15 +22,16 @@ public class RepairComponentService {
     private RepairComponentRepository repairComponentRepository;
     @Autowired
     private RepairService repairService;
-
     @Autowired
     private ComponentService componentService;
     @Autowired
     private ComponentRepository componentRepository;
+
     @Cacheable(value = "repairComponentsCache")
     public List<RepairComponent> getAllRepairComponents() {
         return repairComponentRepository.findAll();
     }
+
     @Cacheable(value = "repairComponentCache", key = "#id")
     public RepairComponent getRepairComponentById(long id) {
         return repairComponentRepository.findById(id).orElse(null);
@@ -61,7 +62,4 @@ public class RepairComponentService {
         repairComponent.setRepair(repair);
         return repairComponentRepository.save(repairComponent);
     }
-
-
-
 }
