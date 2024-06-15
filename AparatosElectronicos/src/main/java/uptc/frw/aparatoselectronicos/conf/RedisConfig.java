@@ -27,7 +27,7 @@ public class RedisConfig {
         //RedisCacheConfiguration: Obtiene la configuración predeterminada de la caché de Redis.
         RedisCacheConfiguration cacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
                 //entryTtlEstablece el tiempo de vida (TTL) de las entradas de caché a 1 minuto.
-                .entryTtl(Duration.ofMinutes(5))
+                .entryTtl(Duration.ofMinutes(10))
                 // Configura la caché para que no almacene valores `null`.
                 .disableCachingNullValues()
                 //Configura la serialización de los valores de la caché usando `GenericJackson2JsonRedisSerializer`, que serializa los objetos en formato JSON.
