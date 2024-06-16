@@ -23,7 +23,7 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    public Customer getCustomerById(@PathVariable long id) {
+    public Customer getCustomerById(@PathVariable Long id) {
         return customerService.getCustomerById(id);
     }
 
@@ -37,8 +37,14 @@ public class CustomerController {
         return customerService.updateCustomer(updatedCustomer);
     }
 
+    @PostMapping("/{quantity}")
+    public String insertFakeData(@PathVariable long quantity){
+        customerService.createNCustomers(quantity);
+        return "successfull insert "+quantity+" elements";
+    }
+
     @DeleteMapping("/{id}")
-    public void deleteCustomer(@PathVariable long id) {
+    public void deleteCustomer(@PathVariable Long id) {
         customerService.deleteCustomer(id);
     }
 
