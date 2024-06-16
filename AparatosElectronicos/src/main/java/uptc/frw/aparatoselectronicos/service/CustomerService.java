@@ -10,7 +10,10 @@ import uptc.frw.aparatoselectronicos.jpa.repository.CustomerRepository;
 
 import java.util.List;
 import java.util.Optional;
-
+//@Cacheable: Es utilizado para almacenar el resultado de la llamada al método en la caché.
+//@CacheEvict: Es utilizado para eliminar uno o más elementos obsoletos de la caché.
+//@CachePut: Es utilizado para actualizar uno o más elementos de la caché.
+//@Caching: Es utilizado para agrupar las anotaciones anteriores, simplificando la configuración.
 @Service
 public class CustomerService {
 
